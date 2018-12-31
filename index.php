@@ -9,6 +9,20 @@
     <script src="res/main.js"></script>
 </head>
 <body>
-    <h1>Hello world!</h1>
+    <div class='mainLoginContainer'>
+        <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
+        <a href='#' class='button firtTimeUserContainer'>
+            <div class='buttonLabel'>I'm a first time user!</div>
+            <div class='buttonIcon'>
+                <img class='twitterSocialIcon' src='res/Twitter_Social_Icon_Rounded_Square_Color.png'/>
+            </div>
+        </a>
+        <a href='#' class='button returningUserContainer'>
+            <div class='buttonLabel'>I'm a returning user!</div>
+            <div class='buttonIcon'>
+            🔑
+            </div>
+        </a>
+    </div>
 </body>
 </html>
