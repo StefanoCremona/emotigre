@@ -11,7 +11,7 @@
 <body>
     <div class='mainLoginContainer'>
         <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
-        <a href='#' class='button firtTimeUserContainer'>
+        <a href='TwitterAuth.php' class='button firtTimeUserContainer'>
             <div class='buttonLabel'>I'm a first time user!</div>
             <div class='buttonIcon'>
                 <img class='twitterSocialIcon' src='res/Twitter_Social_Icon_Rounded_Square_Color.png'/>
