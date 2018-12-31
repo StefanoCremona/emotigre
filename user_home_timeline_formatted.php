@@ -10,8 +10,7 @@ $oauth_token=$_GET["oauth_token"];
 
 if(!empty($user_verifier))
 {
-    echo 'user_verifier not empty: '.$user_verifier.'</BR>';
-		$oauth_access=array(
+    $oauth_access=array(
 				'oauth_consumer_key' => $consumer_key,
 				//'oauth_nonce' => $nonce,
 				//'oauth_nonce' => time(),
@@ -44,6 +43,7 @@ if(!empty($user_verifier))
 echo 'User Screen Name: '.$screen_name."<br />".'Consumer Key: '.$consumer_key."<br />".'Consumer Secret: '.$consumer_secret."<br />";
 echo 'User Token: '.$user_token."<br />".'User Secret: '.$user_secret."<br /><br />";
 
+require 'userAlreadyRegistered.php';
 
 $connection = new tmhOAuth(array(
   'consumer_key'    => $consumer_key,
@@ -72,8 +72,6 @@ $response_data = json_decode($connection->response['response'],true);
 if ($response_code <> 200) {
   print "Error: $response_code\n";
 }
-
-
 
 // Display the response HTTP code
 $code = $connection->response['code'];
