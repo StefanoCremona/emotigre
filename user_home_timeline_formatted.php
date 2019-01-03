@@ -2,6 +2,7 @@
 require 'tmhOAuth.php';
 require 'security.php';
 require 'core.php';
+require 'user.php';
 
 echo "GET Request after Log-In via Twitter <br />";
 $user_token = $_GET["oauth_token"];
@@ -43,7 +44,9 @@ if(!empty($user_verifier))
 echo 'User Screen Name: '.$screen_name."<br />".'Consumer Key: '.$consumer_key."<br />".'Consumer Secret: '.$consumer_secret."<br />";
 echo 'User Token: '.$user_token."<br />".'User Secret: '.$user_secret."<br /><br />";
 
-require 'userAlreadyRegistered.php';
+//require 'userAlreadyRegistered.php';
+$user = new User();
+$user->getUserByScreenName($screen_name);
 
 $connection = new tmhOAuth(array(
   'consumer_key'    => $consumer_key,
@@ -78,8 +81,15 @@ $code = $connection->response['code'];
 print "<strong>Code:</strong> $code<br/>";
 
 // Display only the text field of the first tweet
-print "<strong>Response:</strong><pre style='word-wrap: break-word'>";
+//print 'Hello '.$user->screenName.'!</br>';
+print "<strong>Response of </strong><pre style='word-wrap: break-word'>".sizeof($response_data).' tweets!<b/r>';
 print_r($response_data[0]['text']);
-print "</pre><br/>";;
+print "</pre><br/><br/>";
+if (isset($user->id)) {
+	print 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
+	print '<a href="index.html">Home</a>';
+} else {
+	print 'Hello '.$screen_name.'!<br />You are required to provide a password for the following accesses.';
+}
 
 ?>
