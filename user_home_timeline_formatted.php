@@ -44,18 +44,18 @@ if(!empty($user_verifier))
 echo 'User Screen Name: '.$screen_name."<br />".'Consumer Key: '.$consumer_key."<br />".'Consumer Secret: '.$consumer_secret."<br />";
 echo 'User Token: '.$user_token."<br />".'User Secret: '.$user_secret."<br /><br />";
 
-//require 'userAlreadyRegistered.php';
+//Check if the screen name is already in the database.
+//In that case returns an user with the related ID.
 $user = new User();
 $user->getUserByScreenName($screen_name);
 
+//Get the Tweets.
 $connection = new tmhOAuth(array(
   'consumer_key'    => $consumer_key,
   'consumer_secret' => $consumer_secret,
   'user_token'      => $user_token,
   'user_secret'     => $user_secret
 ));
-
-
 
 // Get my account's home timeline 
 $connection->request('GET', $connection->url('1.1/statuses/home_timeline'), array(
@@ -66,7 +66,6 @@ echo "Retrieving Tweets...<br /><br />";
 
 // Get the HTTP response code for the API request
 $response_code = $connection->response['code'];
-
 
 // Convert the JSON response into an array
 $response_data = json_decode($connection->response['response'],true);
@@ -86,10 +85,30 @@ print "<strong>Response of </strong><pre style='word-wrap: break-word'>".sizeof(
 print_r($response_data[0]['text']);
 print "</pre><br/><br/>";
 if (isset($user->id)) {
-	print 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
-	print '<a href="index.html">Home</a>';
+	$welcomeMessage = 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
+	$welcomeAction = '<a href="index.html">🔙 🏠';
 } else {
-	print 'Hello '.$screen_name.'!<br />You are required to provide a password for the following accesses.';
+	$welcomeMessage = 'Hello '.$screen_name.'!<br />You are required to provide a password for the following accesses.';
+	$welcomeAction = '<a href="index.html">🔙 🏠';
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="res/main.css" />
+    <script src="res/main.js"></script>
+</head>
+<body>
+    <div class='mainLoginContainer'>
+        <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
+        <div class='userAlreadyRegisteredMessage' ><?php echo $welcomeMessage; ?></div>
+				<div class="homeAction" ><?php echo $welcomeAction; ?></div>
+    </div>
+</body>
+</html>

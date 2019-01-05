@@ -60,3 +60,11 @@ a:active {
     height: 40px;
     width: 40px
 }
+.userAlreadyRegisteredMessage {
+    margin-bottom: 60px;
+}
+.homeAction {
+    display: flex;
+    flex: 1;
+    font-size: 18pt;
+}
