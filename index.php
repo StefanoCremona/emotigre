@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="res/main.css" />
     <script src="res/main.js"></script>
 </head>
-<body>
+<body onload='setUp()'>
     <div class='mainLoginContainer'>
         <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
         <a href='TwitterAuth.php' class='button firtTimeUserContainer'>
@@ -17,12 +17,15 @@
                 <img class='twitterSocialIcon' src='res/Twitter_Social_Icon_Rounded_Square_Color.png'/>
             </div>
         </a>
-        <a href='#' class='button returningUserContainer'>
+        <a href='#' class='button returningUserContainer' id='returningUserButton'>
             <div class='buttonLabel'>I'm a returning user!</div>
-            <div class='buttonIcon'>
-            🔑
-            </div>
+            <div class='buttonIcon'>🔑</div>
         </a>
+        <form class='loginForm' id='loginForm'>
+            <input type='text' placeholder='User Name'/>
+            <input type='password' placeholder='Password'/>
+            <button type='submit'>Login</button>
+        </form>
     </div>
 </body>
 </html>

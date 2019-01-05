@@ -68,3 +68,11 @@ a:active {
     flex: 1;
     font-size: 18pt;
 }
+.loginForm {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
