@@ -9,6 +9,9 @@
     <script src="res/main.js"></script>
 </head>
 <body onload='setUp()'>
+    <div id='spinner' class='itemsCentered' style="position: absolute; width: 100%; height: 100%; visibility: hidden">
+        <div class="loader"></div>
+    </div>
     <div class='mainLoginContainer'>
         <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
         <a href='TwitterAuth.php' class='button firtTimeUserContainer'>
