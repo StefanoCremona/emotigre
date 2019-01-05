@@ -8,4 +8,7 @@ function setUp() {
         }
         document.getElementById("loginForm").style.visibility = visibility;
     });
+    document.getElementById("loginForm").addEventListener("submit", function() {
+        alert('Hello submit');
+    });
 }
