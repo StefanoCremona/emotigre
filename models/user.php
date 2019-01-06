@@ -20,7 +20,8 @@ class User
 
     function __construct2($userName, $password) { 
         $this->userName = $userName;
-        $this->password = $password;
+        $this->screenName = $userName;
+        $this->password = md5($password);
     }
 
     function getUserByUsernamAndPassword() { 
@@ -46,6 +47,21 @@ class User
 
         $myDbHelper->closeConnection();
         return $returnMessage;
+    }
+
+    function registerUser() {
+        $myDbHelper = new DBHelper();
+        $conn = $myDbHelper->getConnection();
+
+        $stmt = mysqli_stmt_init($conn);
+        $query = "INSERT INTO `comp1678_user` (USERNAME, SCREEN_NAME, PASSWORD) VALUES (?, ?, ?)";
+        if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));
+        if(!mysqli_stmt_bind_param($stmt, 'sss', $this->userName, $this->screenName, $this->password)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
+        if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'Failed to execute statement:'.mysqli_stmt_error($stmt)));
+ 
+        $stmt->close();
+        $myDbHelper->closeConnection();
+        return new Message(true, 'Operation successful!');
     }
 
     function getUserByScreenName($screenName) {

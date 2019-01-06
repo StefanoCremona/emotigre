@@ -89,7 +89,11 @@ if (isset($user->id)) {
 	$welcomeMessage = 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
 } else {
 	$welcomeMessage = 'Hello '.$screen_name.'!<br />You are required to provide a password for the following accesses.';
-	$welcomeAction = '<div class="mediumSize itemsCenteredFullSize" style="margin-bottom: 20px;"><input type="password" id="password" placeholder="Password"/><input type="button" id="savePassword" value="SAVE"/></div>'.$welcomeAction;
+	$welcomeAction = '<div class="mediumSize itemsCenteredFullSize" style="margin-bottom: 20px;">';
+	$welcomeAction = $welcomeAction.'<form id="registerForm" onSubmit="return false;"><input type="password" id="password" placeholder="Password"/>';
+	$welcomeAction = $welcomeAction.'<input type="hidden" id="screenName" value="'.$screen_name.'"/>';
+	$welcomeAction = $welcomeAction.'<input type="submit" value="SAVE"/></form></div>';
+	$welcomeAction = $welcomeAction.'<div><a href="index.html">🔙 🏠</a></div>';
 }
 
 ?>
@@ -102,9 +106,12 @@ if (isset($user->id)) {
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="res/main.css" />
-    <script src="res/main.js"></script>
+    <script src="res/register.js"></script>
 </head>
-<body>
+<body onload='setUp()'>
+    <div id='spinner' class='itemsCentered' style="position: absolute; width: 100%; height: 100%; visibility: hidden">
+        <div class="loader"></div>
+    </div>
     <div class='mainLoginContainer'>
         <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
         <div class='userAlreadyRegisteredMessage' ><?php echo $welcomeMessage; ?></div>

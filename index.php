@@ -24,7 +24,7 @@
             <div class='buttonLabel'>I'm a returning user!</div>
             <div class='buttonIcon'>🔑</div>
         </a>
-        <form class='loginForm' id='loginForm'>
+        <form class='loginForm' id='loginForm' onSubmit='return false;'>
             <input type='text' id='username' placeholder='User Name'/>
             <input type='password' id='password' placeholder='Password'/>
             <button type='submit'>Login</button>
