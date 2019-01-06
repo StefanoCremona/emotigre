@@ -81,15 +81,15 @@ print "<strong>Code:</strong> $code<br/>";
 
 // Display only the text field of the first tweet
 //print 'Hello '.$user->screenName.'!</br>';
-print "<strong>Response of </strong><pre style='word-wrap: break-word'>".sizeof($response_data).' tweets!<b/r>';
+print "<strong>Response of </strong><pre style='word-wrap: break-word'>".sizeof($response_data).' tweets!<br/>';
 print_r($response_data[0]['text']);
 print "</pre><br/><br/>";
+$welcomeAction = '<div><a href="index.html">🔙 🏠</a></div>';
 if (isset($user->id)) {
 	$welcomeMessage = 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
-	$welcomeAction = '<a href="index.html">🔙 🏠';
 } else {
 	$welcomeMessage = 'Hello '.$screen_name.'!<br />You are required to provide a password for the following accesses.';
-	$welcomeAction = '<a href="index.html">🔙 🏠';
+	$welcomeAction = '<div class="mediumSize itemsCenteredFullSize" style="margin-bottom: 20px;"><input type="password" id="password" placeholder="Password"/><input type="button" id="savePassword" value="SAVE"/></div>'.$welcomeAction;
 }
 
 ?>
@@ -108,7 +108,7 @@ if (isset($user->id)) {
     <div class='mainLoginContainer'>
         <div class='welcomeMessage'>Welcome to the EmotiGre login.</div>
         <div class='userAlreadyRegisteredMessage' ><?php echo $welcomeMessage; ?></div>
-				<div class="homeAction" ><?php echo $welcomeAction; ?></div>
+		<div class="homeAction" ><?php echo $welcomeAction; ?></div>
     </div>
 </body>
 </html>
