@@ -25,8 +25,8 @@
             <div class='buttonIcon'>🔑</div>
         </a>
         <form class='loginForm' id='loginForm'>
-            <input type='text' placeholder='User Name'/>
-            <input type='password' placeholder='Password'/>
+            <input type='text' id='username' placeholder='User Name'/>
+            <input type='password' id='password' placeholder='Password'/>
             <button type='submit'>Login</button>
         </form>
     </div>

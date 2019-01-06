@@ -9,6 +9,53 @@ function setUp() {
         document.getElementById("loginForm").style.visibility = visibility;
     });
     document.getElementById("loginForm").addEventListener("submit", function() {
-        document.getElementById("spinner").style.visibility = "visible";
+        username = document.getElementById("username").value;
+        password = document.getElementById("password").value;
+        login(username, password);
     });
+}
+
+function showSpinner() {
+    document.getElementById("spinner").style.visibility = "visible";
+}
+function hideSpinner() {
+    setTimeout(function() {
+        document.getElementById("spinner").style.visibility = "hidden";
+    }, 500);
+}
+
+function login(userName, password) {
+    if (!username || !password) {
+        alert('Fill the fields, Please!');
+        return;    
+    }
+
+    showSpinner();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            switch (this.status) {
+                case 200:
+                    try {
+                        var response = JSON.parse(this.responseText);
+                        alert(response.message);
+                        //reload the page
+                        //location.reload();
+                    } catch (error) {
+                        alert(error);
+                    }
+                    
+                    break;
+                case 403:
+                case 404:
+                case 500:
+                default:
+                    alert('An unexpected error occurred: ' + this.status);
+            }
+            hideSpinner();
+        }
+    }
+    xmlhttp.open("POST", "./json/login.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("userName="+userName+"&password="+password);
 }

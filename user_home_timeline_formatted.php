@@ -2,7 +2,7 @@
 require 'tmhOAuth.php';
 require 'security.php';
 require 'core.php';
-require 'user.php';
+require './models/user.php';
 
 echo "GET Request after Log-In via Twitter <br />";
 $user_token = $_GET["oauth_token"];
