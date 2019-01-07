@@ -16,6 +16,7 @@ $user = new User($screenName, $password);
 $returnMessage = $user->registerUser();
 if ($returnMessage->success == true) {
     $_SESSION["USER"] = $user;
+    $returnMessage = $user->saveTweets($_SESSION["TWEETS"]);
 }
 
 echo json_encode($returnMessage);

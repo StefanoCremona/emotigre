@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'tmhOAuth.php';
 require 'security.php';
 require 'core.php';
@@ -58,6 +59,7 @@ $connection = new tmhOAuth(array(
 ));
 
 // Get my account's home timeline 
+//user_timeline to see someonelse tweets
 $connection->request('GET', $connection->url('1.1/statuses/home_timeline'), array(
   'screen_name' => $screen_name
 ));
@@ -72,28 +74,35 @@ $response_data = json_decode($connection->response['response'],true);
 
 // A response code of 200 is a success
 if ($response_code <> 200) {
-  print "Error: $response_code\n";
+  print "Error: $response_code.";
+  print $response_data['errors'][0]['message'].'</br>';
+} else {
+	$_SESSION["TWEETS"] = $response_data;
 }
-
-// Display the response HTTP code
-$code = $connection->response['code'];
-print "<strong>Code:</strong> $code<br/>";
 
 // Display only the text field of the first tweet
 //print 'Hello '.$user->screenName.'!</br>';
 print "<strong>Response of </strong><pre style='word-wrap: break-word'>".sizeof($response_data).' tweets!<br/>';
-print_r($response_data[0]['text']);
+/* foreach ($response_data as $key => $value) {
+	$screenName = $value["retweeted_status"]["user"]["screen_name"];
+	$text = $value["retweeted_status"]["text"];
+	print_r ('User: '.$screenName.' text: '.$text.'</br>');
+} */
+//print_r ($response_data[0]);
+//print_r(substr($twt, 4, strpos($twt, ':') - 4).'</br>');
+//print_r(substr($twt, strpos($twt, ':') + 2));
+//created_at, id
 print "</pre><br/><br/>";
-$welcomeAction = '<div><a href="index.html">🔙 🏠</a></div>';
+$welcomeAction = '<div><a href="logout.php">🔙 🏠</a></div>';
 if (isset($user->id)) {
 	$welcomeMessage = 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
 } else {
-	$welcomeMessage = 'Hello '.$screen_name.'!<br />You are required to provide a password for the following accesses.';
+	$welcomeMessage = 'Hello '.$screen_name.'!<br />You are required to provide a password for the following access.';
 	$welcomeAction = '<div class="mediumSize itemsCenteredFullSize" style="margin-bottom: 20px;">';
 	$welcomeAction = $welcomeAction.'<form id="registerForm" onSubmit="return false;"><input type="password" id="password" placeholder="Password"/>';
 	$welcomeAction = $welcomeAction.'<input type="hidden" id="screenName" value="'.$screen_name.'"/>';
 	$welcomeAction = $welcomeAction.'<input type="submit" value="SAVE"/></form></div>';
-	$welcomeAction = $welcomeAction.'<div><a href="index.html">🔙 🏠</a></div>';
+	$welcomeAction = $welcomeAction.'<div><a href="logout.php">🔙 🏠</a></div>';
 }
 
 ?>

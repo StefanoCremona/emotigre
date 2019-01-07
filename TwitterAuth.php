@@ -37,7 +37,7 @@ require 'core.php';
 		$authUrl='https://api.twitter.com/oauth/authorize?oauth_token='.$oauth_token;
 		Redirect($authUrl);
 	}
-	else{
+	else {
 		echo '<h1>Wrong response received from Twitter</h1>';
 		echo 'Response: '.$response."<br />";
 	}
