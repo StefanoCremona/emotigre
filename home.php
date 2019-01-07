@@ -36,12 +36,30 @@
 
 <div class="col-3 col-m-12">
   <div class="aside">
-    <h2>What?</h2>
-    <p>Chania is a city on the island of Crete.</p>
-    <h2>Where?</h2>
-    <p>Crete is a Greek island in the Mediterranean Sea.</p>
-    <h2>How?</h2>
-    <p>You can reach Chania airport from all over Europe.</p>
+    <div id="avatarContainer" class="horizontal centeredV padded">
+      <img class="iconRounded" src='./res/male-user.png' />
+      <div class="descIcon" id="name">Stefano Cremona</div>
+    </div>
+    <div id="townContainer" class="horizontal centeredV padded">
+      <img class="icon" src='./res/town.png' />
+      <div class="descIcon" id="town">Roma - Italy</div>
+    </div>
+    <div id="townContainer" class="horizontal centeredV padded">
+      <img class="icon" src='./res/job.png' />
+      <div class="descIcon" id="job">Software Developer</div>
+    </div>
+    <div id="townContainer" class="horizontal centeredV padded">
+      <img class="icon" src='./res/aboutMe.png' />
+      <div class="descIcon" id="about">I like travelling, fishing, playing tennis, IT, clubbing, going out with friends.</div>
+    </div>
+    <div id="townContainer" class="horizontal centeredV padded">
+      <img class="icon" src='./res/age.png' />
+      <div class="descIcon" id="age">18-25</div>
+    </div>
+    <div id="townContainer" class="horizontal centeredV padded">
+      <img class="icon" src='./res/kids.png' />
+      <div class="descIcon" id="kids">0</div>
+    </div>
   </div>
 </div>
 
