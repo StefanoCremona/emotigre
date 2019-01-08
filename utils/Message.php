@@ -2,6 +2,7 @@
 class Message {
     public $success = true;
     public $message = null;
+    public $payload = null;
     
     function __construct() 
     { 
@@ -16,6 +17,13 @@ class Message {
     {
         $this->success = $success;
         $this->message = $message;
+    }
+
+    function __construct3($success, $message, $payload)
+    {
+        $this->success = $success;
+        $this->message = $message;
+        $this->payload = $payload;
     }
 }
 
