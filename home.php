@@ -30,8 +30,8 @@
   </ul>
 </div>
 
-<div class="col-6 col-m-9 padded vertical">
-  <div id="tweestTitle">The Tweets</div>
+<div class="col-6 col-m-9 padded vertical" id="mainPage">
+  <div class="mainPageTitle">The Tweets</div>
   <div id="avatarContainer" class="horizontal centeredV padded">
     <img class="icon" src='./res/tweetIcon.png' />
     <div>
