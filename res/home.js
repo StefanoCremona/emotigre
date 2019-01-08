@@ -15,6 +15,8 @@ const tweets = [{
     },
 ];
 
+const users = [];
+
 function populateMainPage(page) {
     let innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">No page found</div></div>';
     switch (page) {
@@ -40,6 +42,7 @@ function populateMainPage(page) {
                                 '</div>' +
                             '</div>';
             });
+            innerHTML += "</div>";
             break;
     }
     document.getElementById("mainPage").innerHTML = innerHTML;
