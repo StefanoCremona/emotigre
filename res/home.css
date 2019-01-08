@@ -4,6 +4,25 @@
 * {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+a:link {
+    text-decoration: none;
+    color:#000000;
+}
+
+/* visited link */
+a:visited {
+    color:#000000;
+}
+
+/* mouse over link */
+a:hover {
+    color:#000000;
+}
+
+/* selected link */
+a:active {
+    color:#000000;
+}
 .row::after {
     content: "";
     clear: both;
@@ -166,6 +185,10 @@ ul.topnav li a.active {background-color: #4CAF50;}
     margin-left: 14px;
 }
 
+.fiftyPercent {
+    display: flex;
+    flex: 0.5;
+}
 .eightyPerCent {
     display: flex;
     flex: 1;
@@ -181,4 +204,42 @@ ul.topnav li a.active {background-color: #4CAF50;}
     padding: 14px;
     border-radius: 4px;
     color: white
+}
+
+.wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.keyWordElement {
+    padding: 14px;
+    font-size: 18px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 4px;
+    margin-bottom: 4px
+}
+.positiveElement {
+    background-color: lightblue;
+}
+
+.positiveElement:hover {
+    background-color: #3498db;
+    color: white
+}
+.negativeElement {
+    background-color: lightcoral
+}
+.negativeElement:hover {
+    background-color: red;
+    color: white
+}
+
+.top {
+    display: flex;
+    justify-content: flex-start
+}
+
+.fontMiddle {
+    font-size: 18px
 }

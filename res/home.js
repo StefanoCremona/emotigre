@@ -30,7 +30,7 @@ const users = [{
 }];
 
 const keyWords = {
-    positive: ['Love', 'Sex', 'Passion', 'Hug'],
+    positive: ['Love', 'Sex', 'Passion', 'Hug', 'Frienship', 'Kiss'],
     negative: ['Hate', 'Tears', 'Sed', 'Dinstance']
 }
 
@@ -89,7 +89,31 @@ function populateMainPage(page) {
             innerHTML += '</div>';
             break;
         } case ADMINPAGE: {
-            innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">Set the keywords</div></div>';
+            innerHTML =  '<div id="usersMainPage" class="mainPage">';
+                innerHTML += '<div class="mainPageTitle horizontal centeredV"><div class="hundredPercent">Edit the keywords</div></div>';
+                innerHTML += '<div class="horizontal" style="margin-bottom: 14px">';
+                    innerHTML += '<div class="fiftyPercent" style="padding-right: 14px">';
+                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="Insert a positive word..."/><a href="#" class="saveButton centeredV positiveElement">Save</a>';
+                    innerHTML += '</div>';
+                    innerHTML += '<div class="fiftyPercent" >';
+                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="Insert a negative word..."/><a href="#" class="saveButton negativeElement centeredV">Save</a>';
+                    innerHTML += '</div>';
+                innerHTML += '</div>';
+                innerHTML += '<div class="padded">Tap to delete</div>';
+                innerHTML += '<div class="horizontal">';
+                    innerHTML += '<div class="fiftyPercent wrap" >';
+                    keyWords.positive.forEach(element => {
+                        innerHTML += '<a alt="Tap to delete" href="#" class="keyWordElement positiveElement">'+element+'</a>';
+                    });
+                    innerHTML += '</div>';
+                
+                    innerHTML += '<div class="fiftyPercent">';
+                    keyWords.negative.forEach(element => {
+                        innerHTML += '<a href="#" class="keyWordElement negativeElement">'+element+'</a>';
+                    });
+                    innerHTML += '</div>';
+                innerHTML += '</div>';
+            innerHTML += '</div>';
             break;
         } case TWEETPAGE:
         default: {
