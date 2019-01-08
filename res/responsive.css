@@ -136,6 +136,11 @@ ul.topnav li a.active {background-color: #4CAF50;}
     padding: 10px;
 }
 
+.menuIcon {
+    height: 20;
+    width: 20px;
+}
+
 .iconRounded {
     height: 60px;
     width: 60px;

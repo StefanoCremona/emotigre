@@ -12,10 +12,11 @@
 
 <ul class="topnav">
   <!-- <li><a class="active" href="#home">Home</a></li> -->
-  <li><a href="http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#home">Home</a></li>
-  <li><a href="http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#news">Users</a></li>
-  <li><a href="http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#contact">Profile</a></li>
-  <li><a href="http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#about">Admin</a></li>
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Users</a></li>
+  <li><a href="#">Profile</a></li>
+  <li><a href="#">Admin</a></li>
+  <li><a href="logout.php"><img class="menuIcon" src='./res/logout.png' /></a></li>
 </ul>
 
 <div class="row">
