@@ -2,9 +2,10 @@
 <!-- saved from url=(0072)http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#about -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./res/responsive.css">
+<link rel="stylesheet" href="./res/home.css">
+<script src="res/home.js"></script>
 </head>
-<body>
+<body onload="populateMainPage()">
 
 <div class="header">
   <h1>EmotiGre - Greenwich Emotions Analyzer</h1>
@@ -12,10 +13,10 @@
 
 <ul class="topnav">
   <!-- <li><a class="active" href="#home">Home</a></li> -->
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Users</a></li>
-  <li><a href="#">Profile</a></li>
-  <li><a href="#">Admin</a></li>
+  <li><a href="#" onclick="populateMainPage(TWEETPAGE)">Home</a></li>
+  <li><a href="#" onclick="populateMainPage(USERPAGE)">Users</a></li>
+  <li><a href="#" onclick="populateMainPage(PROFILEPAGE)">Profile</a></li>
+  <li><a href="#" onclick="populateMainPage(ADMINPAGE)">Admin</a></li>
   <li><a href="logout.php"><img class="menuIcon" src='./res/logout.png' /></a></li>
 </ul>
 
@@ -31,49 +32,7 @@
 </div>
 
 <div class="col-6 col-m-9 padded vertical" id="mainPage">
-  <div class="mainPageTitle">The Tweets</div>
-  <div id="avatarContainer" class="horizontal centeredV padded">
-    <img class="icon" src='./res/tweetIcon.png' />
-    <div>
-      <div class="tweetAuthor" >Stefano Cremona</div>
-      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
-    </div>
-  </div>
-  <div id="avatarContainer" class="horizontal centeredV padded">
-    <img class="icon" src='./res/tweetIcon.png' />
-    <div>
-      <div class="tweetAuthor" >Stefano Cremona</div>
-      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
-      </div>
-  </div>
-  <div id="avatarContainer" class="horizontal centeredV padded">
-    <img class="icon" src='./res/tweetIcon.png' />
-    <div>
-      <div class="tweetAuthor" >Stefano Cremona</div>
-      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
-    </div>
-  </div>
-  <div id="avatarContainer" class="horizontal centeredV padded">
-    <img class="icon" src='./res/tweetIcon.png' />
-    <div>
-      <div class="tweetAuthor" >Stefano Cremona</div>
-      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
-    </div>
-  </div>
-  <div id="avatarContainer" class="horizontal centeredV padded">
-    <img class="icon" src='./res/tweetIcon.png' />
-    <div>
-      <div class="tweetAuthor" >Stefano Cremona</div>
-      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
-    </div>
-  </div>
-  <div id="avatarContainer" class="horizontal centeredV padded">
-    <img class="icon" src='./res/tweetIcon.png' />
-    <div>
-      <div class="tweetAuthor" >Stefano Cremona</div>
-      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
-    </div>
-  </div>
+  
 </div>
 
 <div class="col-3 col-m-12">
