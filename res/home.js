@@ -15,13 +15,44 @@ const tweets = [{
     },
 ];
 
-const users = [];
+const users = [{
+    screenName: "CremonaStefano",
+    gender: 1,
+    tweets: 18
+}, {
+    screenName: "La Patata",
+    gender: 0,
+    tweets: 2918
+}, {
+    screenName: "Massimo",
+    gender: null,
+    tweets: 5
+}];
 
 function populateMainPage(page) {
     let innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">No page found</div></div>';
     switch (page) {
         case USERPAGE:
-            innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">The Users</div></div>';
+            innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">The Users</div>';
+            users.forEach(element => {
+                let userIcon = 'no-gender';
+                switch (element.gender) {
+                    case 0:
+                        userIcon = 'female';
+                        break;
+                    case 1:
+                        userIcon = 'male';
+                        break;
+                    default:
+                        break;
+                }
+                innerHTML += '<div id="avatarContainer" class="horizontal centeredV padded">' +
+                                '<img class="icon" src=\'./res/'+userIcon+'-user.png\' />' +
+                                '<div class="tweetAuthor" >'+element.screenName+'</div>' +
+                                '<div class="tweetContent" >&nbsp;-&nbsp;'+element.tweets+'&nbsp;tweets</div>' +
+                            '</div>';
+            });
+            innerHTML += '</div>';
             break;
         case PROFILEPAGE:
             innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">Edit Your profile</div></div>';
