@@ -29,9 +29,50 @@
   </ul>
 </div>
 
-<div class="col-6 col-m-9">
-  <h1>The Tweets</h1>
-  <p>Bla bla bla</p>
+<div class="col-6 col-m-9 padded vertical">
+  <div id="tweestTitle">The Tweets</div>
+  <div id="avatarContainer" class="horizontal centeredV padded">
+    <img class="icon" src='./res/tweetIcon.png' />
+    <div>
+      <div class="tweetAuthor" >Stefano Cremona</div>
+      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
+    </div>
+  </div>
+  <div id="avatarContainer" class="horizontal centeredV padded">
+    <img class="icon" src='./res/tweetIcon.png' />
+    <div>
+      <div class="tweetAuthor" >Stefano Cremona</div>
+      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
+      </div>
+  </div>
+  <div id="avatarContainer" class="horizontal centeredV padded">
+    <img class="icon" src='./res/tweetIcon.png' />
+    <div>
+      <div class="tweetAuthor" >Stefano Cremona</div>
+      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
+    </div>
+  </div>
+  <div id="avatarContainer" class="horizontal centeredV padded">
+    <img class="icon" src='./res/tweetIcon.png' />
+    <div>
+      <div class="tweetAuthor" >Stefano Cremona</div>
+      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
+    </div>
+  </div>
+  <div id="avatarContainer" class="horizontal centeredV padded">
+    <img class="icon" src='./res/tweetIcon.png' />
+    <div>
+      <div class="tweetAuthor" >Stefano Cremona</div>
+      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
+    </div>
+  </div>
+  <div id="avatarContainer" class="horizontal centeredV padded">
+    <img class="icon" src='./res/tweetIcon.png' />
+    <div>
+      <div class="tweetAuthor" >Stefano Cremona</div>
+      <div class="tweetContent" >Non ce la faccio piuuuuuuuuu!! Quando finisce?</div>
+    </div>
+  </div>
 </div>
 
 <div class="col-3 col-m-12">
@@ -44,19 +85,19 @@
       <img class="icon" src='./res/town.png' />
       <div class="descIcon" id="town">Roma - Italy</div>
     </div>
-    <div id="townContainer" class="horizontal centeredV padded">
+    <div id="jobContainer" class="horizontal centeredV padded">
       <img class="icon" src='./res/job.png' />
       <div class="descIcon" id="job">Software Developer</div>
     </div>
-    <div id="townContainer" class="horizontal centeredV padded">
+    <div id=aboutMeContainer" class="horizontal centeredV padded">
       <img class="icon" src='./res/aboutMe.png' />
       <div class="descIcon" id="about">I like travelling, fishing, playing tennis, IT, clubbing, going out with friends.</div>
     </div>
-    <div id="townContainer" class="horizontal centeredV padded">
+    <div id="ageContainer" class="horizontal centeredV padded">
       <img class="icon" src='./res/age.png' />
       <div class="descIcon" id="age">18-25</div>
     </div>
-    <div id="townContainer" class="horizontal centeredV padded">
+    <div id="kidsContainer" class="horizontal centeredV padded">
       <img class="icon" src='./res/kids.png' />
       <div class="descIcon" id="kids">0</div>
     </div>
