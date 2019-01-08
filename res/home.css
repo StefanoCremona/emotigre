@@ -149,6 +149,10 @@ ul.topnav li a.active {background-color: #4CAF50;}
     background-color: white
 }
 
+.greenLight {
+    background-color: #01c0c0
+}
+
 .descIcon {
     padding: 15px;
     font-size: 18px;

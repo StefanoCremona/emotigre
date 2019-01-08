@@ -32,7 +32,7 @@ const users = [{
 function populateMainPage(page) {
     let innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">No page found</div></div>';
     switch (page) {
-        case USERPAGE:
+        case USERPAGE: {
             innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">The Users</div>';
             users.forEach(element => {
                 let userIcon = 'no-gender';
@@ -54,16 +54,41 @@ function populateMainPage(page) {
             });
             innerHTML += '</div>';
             break;
-        case PROFILEPAGE:
-            innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">Edit Your profile</div></div>';
+        } case PROFILEPAGE: {
+            innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">Edit Your profile</div>';
+            innerHTML += '<div id="avatarContainer" class="horizontal centeredV padded">';
+                innerHTML += '<img class="iconRounded" src=\'./res/male-user.png\' />';
+                innerHTML += '<div class="descIcon" id="name">Stefano Cremona</div>';
+                innerHTML += '</div>';
+                innerHTML += '<div id="townContainer" class="horizontal centeredV padded">';
+                innerHTML += '<img class="iconRounded greenLight" src=\'./res/town.png\' />';
+                innerHTML += '<div class="descIcon" id="town">Roma - Italy</div>';
+                innerHTML += '</div>';
+                innerHTML += '<div id="jobContainer" class="horizontal centeredV padded">';
+                innerHTML += '<img class="iconRounded greenLight" src=\'./res/job.png\' />';
+                innerHTML += '<div class="descIcon" id="job">Software Developer</div>';
+                innerHTML += '</div>';
+                innerHTML += '<div id=aboutMeContainer" class="horizontal centeredV padded">';
+                innerHTML += '<img class="iconRounded greenLight" src=\'./res/aboutMe.png\' />';
+                innerHTML += '<div class="descIcon" id="about">I like travelling, fishing, playing tennis, IT, clubbing, going out with friends.</div>';
+                innerHTML += '</div>';
+                innerHTML += '<div id="ageContainer" class="horizontal centeredV padded">';
+                innerHTML += '<img class="iconRounded greenLight" src=\'./res/age.png\' />';
+                innerHTML += '<div class="descIcon" id="age">18-25</div>';
+                innerHTML += '</div>';
+                innerHTML += '<div id="kidsContainer" class="horizontal centeredV padded">';
+                innerHTML += '<img class="iconRounded greenLight" src=\'./res/kids.png\' />';
+                innerHTML += '<div class="descIcon" id="kids">0</div>';
+                innerHTML += '</div>';
+            innerHTML += '</div>';
             break;
-        case ADMINPAGE:
+        } case ADMINPAGE: {
             innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">Set the keywords</div></div>';
             break;
-        case TWEETPAGE:
-        default:
-            innerHTML = '<div id="tweetsMainPage" class="mainPage">' +
-            '<div class="mainPageTitle">The Tweets</div>';
+        } case TWEETPAGE:
+        default: {
+            innerHTML = '<div id="tweetsMainPage" class="mainPage">';
+            innerHTML += '<div class="mainPageTitle">The Tweets</div>';
             tweets.forEach(element => {
                 innerHTML += '<div id="avatarContainer" class="horizontal centeredV padded">' +
                                 '<img class="icon" src=\'./res/tweetIcon.png\' />' +
@@ -75,6 +100,7 @@ function populateMainPage(page) {
             });
             innerHTML += "</div>";
             break;
+        }
     }
     document.getElementById("mainPage").innerHTML = innerHTML;
 };
