@@ -29,6 +29,11 @@ const users = [{
     tweets: 5
 }];
 
+const keyWords = {
+    positive: ['Love', 'Sex', 'Passion', 'Hug'],
+    negative: ['Hate', 'Tears', 'Sed', 'Dinstance']
+}
+
 function populateMainPage(page) {
     let innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">No page found</div></div>';
     switch (page) {
@@ -55,30 +60,31 @@ function populateMainPage(page) {
             innerHTML += '</div>';
             break;
         } case PROFILEPAGE: {
-            innerHTML = '<div id="usersMainPage" class="mainPage"><div class="mainPageTitle">Edit Your profile</div>';
+            innerHTML = '<div id="usersMainPage" class="mainPage">';
+            innerHTML += '<div class="mainPageTitle horizontal centeredV"><div class="hundredPercent">Edit Your profile</div><div class="saveButton">Save</div></div>';
             innerHTML += '<div id="avatarContainer" class="horizontal centeredV padded">';
                 innerHTML += '<img class="iconRounded" src=\'./res/male-user.png\' />';
-                innerHTML += '<div class="descIcon" id="name">Stefano Cremona</div>';
+                innerHTML += '<input type="text" class="descIcon leftPadded eightyPerCent" id="nameInput" value="Stefano Cremona">';
                 innerHTML += '</div>';
                 innerHTML += '<div id="townContainer" class="horizontal centeredV padded">';
                 innerHTML += '<img class="iconRounded greenLight" src=\'./res/town.png\' />';
-                innerHTML += '<div class="descIcon" id="town">Roma - Italy</div>';
+                innerHTML += '<input type="text" class="descIcon leftPadded eightyPerCent" value="Rome - Italy"/>';
                 innerHTML += '</div>';
                 innerHTML += '<div id="jobContainer" class="horizontal centeredV padded">';
                 innerHTML += '<img class="iconRounded greenLight" src=\'./res/job.png\' />';
-                innerHTML += '<div class="descIcon" id="job">Software Developer</div>';
+                innerHTML += '<input type="text" class="descIcon leftPadded eightyPerCent" value="Software Developer"/>';
                 innerHTML += '</div>';
                 innerHTML += '<div id=aboutMeContainer" class="horizontal centeredV padded">';
                 innerHTML += '<img class="iconRounded greenLight" src=\'./res/aboutMe.png\' />';
-                innerHTML += '<div class="descIcon" id="about">I like travelling, fishing, playing tennis, IT, clubbing, going out with friends.</div>';
+                innerHTML += '<input type="text" class="descIcon leftPadded eightyPerCent" value="I like travelling, fishing, playing tennis, IT, clubbing, going out with friends."/>';
                 innerHTML += '</div>';
                 innerHTML += '<div id="ageContainer" class="horizontal centeredV padded">';
                 innerHTML += '<img class="iconRounded greenLight" src=\'./res/age.png\' />';
-                innerHTML += '<div class="descIcon" id="age">18-25</div>';
+                innerHTML += '<input type="text" class="descIcon leftPadded eightyPerCent" value="18-25"/>';
                 innerHTML += '</div>';
                 innerHTML += '<div id="kidsContainer" class="horizontal centeredV padded">';
                 innerHTML += '<img class="iconRounded greenLight" src=\'./res/kids.png\' />';
-                innerHTML += '<div class="descIcon" id="kids">0</div>';
+                innerHTML += '<input type="text" class="descIcon leftPadded eightyPerCent" value="0"/>';
                 innerHTML += '</div>';
             innerHTML += '</div>';
             break;

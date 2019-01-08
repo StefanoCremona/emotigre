@@ -111,7 +111,7 @@ ul.topnav li a.active {background-color: #4CAF50;}
 }
 
 .mainPageTitle {
-    padding: 28px;
+    padding: 14px;
     font-size: 26px
 }
 
@@ -162,6 +162,23 @@ ul.topnav li a.active {background-color: #4CAF50;}
     padding: 14px;
 }
 
-.mainPage {
+.leftPadded {
+    margin-left: 14px;
+}
 
+.eightyPerCent {
+    display: flex;
+    flex: 1;
+}
+
+.hundredPercent {
+    display: flex;
+    flex: 1;
+}
+
+.saveButton {
+    background-color: red;
+    padding: 14px;
+    border-radius: 4px;
+    color: white
 }
