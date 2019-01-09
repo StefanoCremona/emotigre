@@ -30,8 +30,39 @@ const users = [{
 }];
 
 const keyWords = {
-    positive: ['Love', 'Sex', 'Passion', 'Hug', 'Frienship', 'Kiss'],
-    negative: ['Hate', 'Tears', 'Sed', 'Dinstance']
+    positive: [],
+    negative: []
+}
+
+function loadKeyWords() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            switch (this.status) {
+                case 200:
+                    try {
+                        var response = JSON.parse(this.responseText);
+                        console.log(response);
+                        //reload the page
+                        response.payload.forEach(element => {
+                            if(element.positive == true) keyWords.positive.push(element.keyword); else keyWords.negative.push(element.keyword);
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
+                    break;
+                case 403:
+                case 404:
+                case 500:
+                default:
+                    console.log('An unexpected error occurred: ' + this.status);
+            }
+            //hideSpinner();
+        }
+    }
+    xmlhttp.open("GET", "./json/keywords.php", true);
+    //xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send();
 }
 
 function populateMainPage(page) {
@@ -93,10 +124,10 @@ function populateMainPage(page) {
                 innerHTML += '<div class="mainPageTitle horizontal centeredV"><div class="hundredPercent">Edit the keywords</div></div>';
                 innerHTML += '<div class="horizontal" style="margin-bottom: 14px">';
                     innerHTML += '<div class="fiftyPercent" style="padding-right: 14px">';
-                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="Insert a positive word..."/><a href="#" class="saveButton centeredV positiveElement">Save</a>';
+                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="A positive word..."/><a href="#" class="saveButton centeredV positiveElement">Save</a>';
                     innerHTML += '</div>';
                     innerHTML += '<div class="fiftyPercent" >';
-                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="Insert a negative word..."/><a href="#" class="saveButton negativeElement centeredV">Save</a>';
+                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="A negative word..."/><a href="#" class="saveButton negativeElement centeredV">Save</a>';
                     innerHTML += '</div>';
                 innerHTML += '</div>';
                 innerHTML += '<div class="padded">Tap to delete</div>';
@@ -133,4 +164,5 @@ function populateMainPage(page) {
         }
     }
     document.getElementById("mainPage").innerHTML = innerHTML;
+    loadKeyWords();
 };
