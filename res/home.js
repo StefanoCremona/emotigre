@@ -34,7 +34,7 @@ const keyWords = {
     negative: []
 }
 
-function loadKeyWords() {
+function loadKeyWords(onSuccess) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4) {
@@ -44,9 +44,14 @@ function loadKeyWords() {
                         var response = JSON.parse(this.responseText);
                         console.log(response);
                         //reload the page
+                        keyWords.positive = [];
+                        keyWords.negative = [];
                         response.payload.forEach(element => {
                             if(element.positive == true) keyWords.positive.push(element.keyword); else keyWords.negative.push(element.keyword);
                         });
+                        if (onSuccess) {
+                            onSuccess();
+                        }
                     } catch (error) {
                         console.log(error);
                     }
@@ -63,6 +68,80 @@ function loadKeyWords() {
     xmlhttp.open("GET", "./json/keywords.php", true);
     //xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send();
+}
+
+loadKeyWords();
+
+function deleteKeyWord(keyword) {
+    var answer = confirm("Do you really want to delete the keyword '" + keyword +"'");
+    if (!answer) {
+        return;
+    }
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            switch (this.status) {
+                case 200:
+                    try {
+                        var response = JSON.parse(this.responseText);
+                        console.log(response);
+                        //reload the page
+                        loadKeyWords(() => populateMainPage(ADMINPAGE));
+                        alert(response.message);
+                    } catch (error) {
+                        alert(error);
+                    }
+                    break;
+                case 403:
+                case 404:
+                case 500:
+                default:
+                    alert('An unexpected error occurred: ' + this.status);
+            }
+            //hideSpinner();
+        }
+    }
+    xmlhttp.open("POST", "./json/deleteKeyword.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("keyword="+keyword);
+}
+
+function saveKeyWord(keyword, positive) {
+    if (keyword.length === 0 || positive.length === 0) {
+        alert('Insert a word, please!');
+        return;
+    }
+    var answer = confirm("Do you really save the keyword '" + keyword +"'");
+    if (!answer) {
+        return;
+    }
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            switch (this.status) {
+                case 200:
+                    try {
+                        var response = JSON.parse(this.responseText);
+                        console.log(response);
+                        //reload the page
+                        loadKeyWords(() => populateMainPage(ADMINPAGE));
+                        alert(response.message);
+                    } catch (error) {
+                        alert(error);
+                    }
+                    break;
+                case 403:
+                case 404:
+                case 500:
+                default:
+                    alert('An unexpected error occurred: ' + this.status);
+            }
+            //hideSpinner();
+        }
+    }
+    xmlhttp.open("POST", "./json/saveKeyword.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("keyword="+keyword+'&positive='+parseInt(positive, 10));
 }
 
 function populateMainPage(page) {
@@ -124,23 +203,25 @@ function populateMainPage(page) {
                 innerHTML += '<div class="mainPageTitle horizontal centeredV"><div class="hundredPercent">Edit the keywords</div></div>';
                 innerHTML += '<div class="horizontal" style="margin-bottom: 14px">';
                     innerHTML += '<div class="fiftyPercent" style="padding-right: 14px">';
-                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="A positive word..."/><a href="#" class="saveButton centeredV positiveElement">Save</a>';
+                        innerHTML += '<input id="positiveWord" class="hundredPercent fontMiddle padded" type="text" placeholder="A positive word..."/>';
+                        innerHTML += '<a href="#" onclick="saveKeyWord(document.getElementById(\'positiveWord\').value, 1)" class="saveButton centeredV positiveElement">Save</a>';
                     innerHTML += '</div>';
                     innerHTML += '<div class="fiftyPercent" >';
-                        innerHTML += '<input class="hundredPercent fontMiddle padded" type="text" placeholder="A negative word..."/><a href="#" class="saveButton negativeElement centeredV">Save</a>';
+                        innerHTML += '<input id="negativeWord" class="hundredPercent fontMiddle padded" type="text" placeholder="A negative word..."/>';
+                        innerHTML += '<a href="#" onclick="saveKeyWord(document.getElementById(\'negativeWord\').value, 0)" class="saveButton negativeElement centeredV">Save</a>';
                     innerHTML += '</div>';
                 innerHTML += '</div>';
                 innerHTML += '<div class="padded">Tap to delete</div>';
                 innerHTML += '<div class="horizontal">';
                     innerHTML += '<div class="fiftyPercent wrap" >';
                     keyWords.positive.forEach(element => {
-                        innerHTML += '<a alt="Tap to delete" href="#" class="keyWordElement positiveElement">'+element+'</a>';
+                        innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement positiveElement">'+element+'</a>';
                     });
                     innerHTML += '</div>';
                 
                     innerHTML += '<div class="fiftyPercent">';
                     keyWords.negative.forEach(element => {
-                        innerHTML += '<a href="#" class="keyWordElement negativeElement">'+element+'</a>';
+                        innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement negativeElement">'+element+'</a>';
                     });
                     innerHTML += '</div>';
                 innerHTML += '</div>';
@@ -164,5 +245,4 @@ function populateMainPage(page) {
         }
     }
     document.getElementById("mainPage").innerHTML = innerHTML;
-    loadKeyWords();
 };
