@@ -41,6 +41,7 @@ function login(userName, password) {
                         alert(response.message);
                         //reload the page
                         //location.reload();
+                        window.location.assign('./home.php');
                     } catch (error) {
                         alert(error);
                     }

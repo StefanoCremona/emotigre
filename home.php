@@ -1,3 +1,8 @@
+<?php
+  if(!isset($_SESSION["USER"])) {
+    die ('You are not allowed to view this content');
+  }
+?>
 <!DOCTYPE html>
 <!-- saved from url=(0072)http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#about -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">

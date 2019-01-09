@@ -8,6 +8,12 @@ class User
     public $screenName;
     public $userName;
     public $password;
+    public $town;
+    public $job;
+    public $aboutme;
+    public $agerange;
+    public $kids;
+    public $gender;
 
     function __construct()
     { 
@@ -38,7 +44,14 @@ class User
             $row = mysqli_fetch_assoc($result);
             $this->id = $row["ID"];
             $this->screenName = $row["SCREEN_NAME"];
-            //$this->userName = $row["USERNAME"];
+            $this->userName = $row["USERNAME"];
+            //$this->password = $row["PASSWORD"];
+            $this->town = $row["TOWN"];
+            $this->job = $row["JOB"];
+            $this->aboutme = $row["ABOUTME"];
+            $this->agerange = $row["AGERANGE"];
+            $this->kids = $row["KIDS"];
+            $this->gender = $row["GENDER"];
         } else {
             //echo $screenName." not found!";
             $returnMessage->success = false;
