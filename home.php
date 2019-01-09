@@ -1,4 +1,5 @@
 <?php
+  session_start();
   if(!isset($_SESSION["USER"])) {
     die ('You are not allowed to view this content');
   }
@@ -8,6 +9,12 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./res/home.css">
+<script>
+  <?php
+    $user = $_SESSION["USER"];
+    echo 'const user = '.json_encode($user).';';
+  ?>
+</script>
 <script src="res/home.js"></script>
 </head>
 <body onload="populateMainPage()">
