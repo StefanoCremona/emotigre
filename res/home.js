@@ -202,17 +202,19 @@ function populateMainPage(page) {
             innerHTML =  '<div id="usersMainPage" class="mainPage">';
                 innerHTML += '<div class="mainPageTitle horizontal centeredV"><div class="hundredPercent">Edit the keywords</div></div>';
                 innerHTML += '<div class="horizontal" style="margin-bottom: 14px">';
-                    innerHTML += '<div class="fiftyPercent" style="padding-right: 14px">';
-                        innerHTML += '<input id="positiveWord" class="hundredPercent fontMiddle padded" type="text" placeholder="A positive word..."/>';
-                        innerHTML += '<a href="#" onclick="saveKeyWord(document.getElementById(\'positiveWord\').value, 1)" class="saveButton centeredV positiveElement">Save</a>';
-                    innerHTML += '</div>';
-                    innerHTML += '<div class="fiftyPercent" >';
-                        innerHTML += '<input id="negativeWord" class="hundredPercent fontMiddle padded" type="text" placeholder="A negative word..."/>';
-                        innerHTML += '<a href="#" onclick="saveKeyWord(document.getElementById(\'negativeWord\').value, 0)" class="saveButton negativeElement centeredV">Save</a>';
+                    innerHTML += '<div class="hundredPercent horizontal wrap" >';
+                        innerHTML += '<div class="fiftyPercent horizontal" >';
+                            innerHTML += '<input id="positiveWord" class="hundredPercent fontMiddle padded" type="text" placeholder="A positive word..."/>';
+                            innerHTML += '<a href="#" onclick="saveKeyWord(document.getElementById(\'positiveWord\').value, 1)" class="saveButton centeredV positiveElement">Save</a>';
+                        innerHTML += '</div>';
+                        innerHTML += '<div class="fiftyPercent horizontal" >';
+                            innerHTML += '<input id="negativeWord" class="hundredPercent fontMiddle padded" type="text" placeholder="A negative word..."/>';
+                            innerHTML += '<a href="#" onclick="saveKeyWord(document.getElementById(\'negativeWord\').value, 0)" class="saveButton negativeElement centeredV">Save</a>';
+                        innerHTML += '</div>';
                     innerHTML += '</div>';
                 innerHTML += '</div>';
                 innerHTML += '<div class="padded">Tap to delete</div>';
-                innerHTML += '<div class="horizontal">';
+                innerHTML += '<div class="horizontal hunderPercent">';
                     innerHTML += '<div class="fiftyPercent wrap" >';
                     keyWords.positive.forEach(element => {
                         innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement positiveElement">'+element+'</a>';
