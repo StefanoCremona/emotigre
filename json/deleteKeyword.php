@@ -36,6 +36,9 @@ $query = "DELETE from `comp1678_keywords` WHERE KEYWORD = ?";
         return;
     }
 
+$stmt->close();
+$myDbHelper->closeConnection();
+
 echo json_encode(new Message(true, 'Operation Successful!'));
 
 ?>

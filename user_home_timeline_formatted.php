@@ -96,6 +96,7 @@ print "</pre><br/><br/>";
 $welcomeAction = '<div><a href="logout.php">🔙 🏠</a></div>';
 if (isset($user->id)) {
 	$welcomeMessage = 'Hello '.$user->screenName.'!<br />Your username is already present in our database.<br />Please login with the username and password you have already provided us.<br/>';
+	$welcomeMessage = $welcomeMessage.'You can proceed anyway but your previous tweets will be replaced by the new ones.<a href="#" onclick="loginAnyWay(\''.$user->screenName.'\')">🔙</a>';
 } else {
 	$welcomeMessage = 'Hello '.$screen_name.'!<br />You are required to provide a password for the following access.';
 	$welcomeAction = '<div class="mediumSize itemsCenteredFullSize" style="margin-bottom: 20px;">';

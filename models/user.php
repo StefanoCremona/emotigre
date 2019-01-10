@@ -30,6 +30,11 @@ class User
         $this->password = md5($password);
     }
 
+    function __construct1($userName) { 
+        $this->userName = $userName;
+        $this->screenName = $userName;
+    }
+
     function getUserByUsernamAndPassword() { 
         $myDbHelper = new DBHelper();
         $conn = $myDbHelper->getConnection();
@@ -77,19 +82,37 @@ class User
         return new Message(true, 'Operation successful!');
     }
 
+    function deleteTweets() {
+        $myDbHelper = new DBHelper();
+        $conn = $myDbHelper->getConnection();
+
+        $stmt = mysqli_stmt_init($conn);
+        $query = "DELETE from `comp1678_tweet` WHERE SCREEN_NAME_ORIG = ?";
+
+        if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));        
+        if(!mysqli_stmt_bind_param($stmt, 's', $this->screenName)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
+        if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'Failed to execute statement:'.mysqli_stmt_error($stmt)));
+ 
+        $stmt->close();
+        $myDbHelper->closeConnection();
+        return new Message(true, 'Operation successful!');
+    }
+
     function saveTweets($tweets) {
         $myDbHelper = new DBHelper();
         $conn = $myDbHelper->getConnection();
 
         $stmt = mysqli_stmt_init($conn);
-        $query = "INSERT INTO `comp1678_tweet` (SCREEN_NAME_ORIG, SCREEN_NAME, TEXT) VALUES (?, ?, ?)";
+        $query = "INSERT INTO `comp1678_tweet` (SCREEN_NAME_ORIG, SCREEN_NAME, TEXT, DATE) VALUES (?, ?, ?, ?)";
         foreach ($tweets as $key => $value) {
             if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));
             //$twt = $value["text"];
             $screenName = $value["retweeted_status"]["user"]["screen_name"];
             $text = $value["retweeted_status"]["text"];
+            $date = $value["retweeted_status"]["created_at"];
+            
             if (strlen($screenName) > 0 && strlen($text) > 0) {
-                if(!mysqli_stmt_bind_param($stmt, 'sss', $this->screenName, $screenName, $text)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
+                if(!mysqli_stmt_bind_param($stmt, 'ssss', $this->screenName, $screenName, $text, $date)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
                 if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'Failed to execute statement:'.mysqli_stmt_error($stmt)));
             }
         }
