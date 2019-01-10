@@ -228,7 +228,7 @@ function populateMainPage(page) {
                 innerHTML += '<div id="avatarContainer" class="horizontal centeredV padded">' +
                                 '<img class="icon" src=\'./res/tweetIcon.png\' />' +
                                 '<div>' +
-                                '<div class="tweetAuthor" >'+element.screen_name+'</div>' +
+                                '<div class="tweetAuthor" >'+element.screen_name_orig+'</div>' +
                                 '<div class="tweetContent" >'+element.text+'</div>' +
                                 '</div>' +
                             '</div>';
@@ -258,7 +258,7 @@ function loadTweets(screen_name, onSuccess) {
                         tweets = response.payload;
                         //reload the page
                         if (onSuccess) onSuccess();
-                        alert(response.message);
+                        alert(response.message+'!!!  '+tweets.length+' tweets retrieved!');
                     } catch (error) {
                         alert(error);
                     }

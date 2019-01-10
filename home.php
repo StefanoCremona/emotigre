@@ -27,7 +27,6 @@
 <ul class="topnav">
   <!-- <li><a class="active" href="#home">Home</a></li> -->
   <li><a href="#" onclick="populateMainPage(TWEETPAGE)">Home</a></li>
-  <li><a href="#" onclick="populateMainPage(USERPAGE)">Users</a></li>
   <li><a href="#" onclick="populateMainPage(PROFILEPAGE)">Profile</a></li>
   <li><a href="#" onclick="populateMainPage(ADMINPAGE)">Admin</a></li>
   <li><a href="logout.php"><img class="menuIcon" src='./res/logout.png' /></a></li>
@@ -44,7 +43,14 @@
   </ul>
 </div>
 
-<div class="col-6 col-m-9 padded vertical" id="mainPage">
+<div class="col-6 col-m-9 padded vertical" >
+  <div class="horizontal usersTabBar">
+    <div class="horizontal"><a href="#" onclick="loadTweets('CremonaStefano', populateMainPage)"><div class="colorWhite">CremonaStefano</div></a><a href="#"><img class="avatarBarIcon" src="./res/manAvatar.png" /></div>
+    <div class="horizontal"><a href="#" onclick="loadTweets('ManuelaCinti', populateMainPage)"><div class="colorWhite">ManuelaCinti</div></a><a href="#"><img class="avatarBarIcon" src="./res/manAvatar.png" /></div>
+    <div class="horizontal"><a href="#" onclick="loadTweets('AFrancia', populateMainPage)"><div class="colorWhite">AFrancia</div></a><a href="#"><img class="avatarBarIcon" src="./res/manAvatar.png" /></div>
+    <div class="horizontal"><a href="#" onclick="loadTweets('DonatoAntonini', populateMainPage)"><div class="colorWhite">DonatoAntonini</div></a><a href="#"><img class="avatarBarIcon" src="./res/manAvatar.png" /></div>
+  </div>
+  <div id="mainPage"></div>
   
 </div>
 
