@@ -89,13 +89,13 @@ class User
         $stmt = mysqli_stmt_init($conn);
         $query = "DELETE from `comp1678_tweet` WHERE SCREEN_NAME = ?";
 
-        if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));        
-        if(!mysqli_stmt_bind_param($stmt, 's', $this->screenName)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
-        if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'Failed to execute statement:'.mysqli_stmt_error($stmt)));
+        if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'deleteTweets- Failed to prepare statement:'.mysqli_stmt_error($stmt)));        
+        if(!mysqli_stmt_bind_param($stmt, 's', $this->screenName)) return (new Message(false, 'deleteTweets - Failed to bind variables:'.mysqli_stmt_error($stmt)));
+        if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'deleteTweets - Failed to execute statement:'.mysqli_stmt_error($stmt)));
  
         $stmt->close();
         $myDbHelper->closeConnection();
-        return new Message(true, 'Operation successful!');
+        return new Message(true, 'Operation successful! Tweets Deleted!');
     }
 
     function saveTweets($tweets) {
@@ -105,21 +105,21 @@ class User
         $stmt = mysqli_stmt_init($conn);
         $query = "INSERT INTO `comp1678_tweet` (SCREEN_NAME, SCREEN_NAME_ORIG, TEXT, DATE) VALUES (?, ?, ?, ?)";
         foreach ($tweets as $key => $value) {
-            if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));
+            if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'saveTweets - Failed to prepare statement:'.mysqli_stmt_error($stmt)));
             //$twt = $value["text"];
             $screenName = $value["retweeted_status"]["user"]["screen_name"];
             $text = $value["retweeted_status"]["text"];
             $date = $value["retweeted_status"]["created_at"];
             
             if (strlen($screenName) > 0 && strlen($text) > 0) {
-                if(!mysqli_stmt_bind_param($stmt, 'ssss', $this->screenName, $screenName, $text, $date)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
-                if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'Failed to execute statement:'.mysqli_stmt_error($stmt)));
+                if(!mysqli_stmt_bind_param($stmt, 'ssss', $this->screenName, $screenName, $text, $date)) return (new Message(false, 'saveTweets - Failed to bind variables:'.mysqli_stmt_error($stmt)));
+                if(!mysqli_stmt_execute($stmt)) return (new Message(false, 'saveTweets - Failed to execute statement:'.mysqli_stmt_error($stmt)));
             }
         }
  
         $stmt->close();
         $myDbHelper->closeConnection();
-        return new Message(true, 'Operation successful!');
+        return new Message(true, 'Operation successful! Tweets saved!');
     }
 
     function getUserByScreenName($screenName) {

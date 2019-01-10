@@ -33,6 +33,9 @@ function register(screenName, password) {
                         alert(response.message);
                         //reload the page
                         //location.reload();
+                        if (response.success == true) {
+                            window.location.replace('home.php');
+                        }
                     } catch (error) {
                         alert(error);
                     }
@@ -68,7 +71,9 @@ function loginAnyWay(screenName) {
                         var response = JSON.parse(this.responseText);
                         alert(response.message);
                         //reload the page
-                        //location.reload();
+                        if (response.success == true) {
+                            window.location.replace('home.php');
+                        }
                     } catch (error) {
                         alert(error);
                     }
