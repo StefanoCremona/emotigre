@@ -14,6 +14,7 @@ class User
     public $agerange;
     public $kids;
     public $gender;
+    public $tweets;
 
     function __construct()
     { 
@@ -142,6 +143,32 @@ class User
         //}
 
         $myDbHelper->closeConnection();
+    }
+
+    function getTweetsByScreenName() {
+        $returnMessage = [];
+        $myDbHelper = new DBHelper();
+        $conn = $myDbHelper->getConnection();
+        $screenName = $this->screenName;
+
+        $sql = "SELECT * FROM `comp1678_tweet` where SCREEN_NAME = '".$screenName."'";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                $x = new stdClass();
+                $x->id = $row["ID"];
+                $x->screen_name_orig = $row["SCREEN_NAME_ORIG"];
+                $x->screen_name = $row["SCREEN_NAME"];
+                $x->text = $row["TEXT"];
+                $x->date = $row["DATE"];
+                array_push($returnMessage, $x);
+            }
+        }
+
+        $myDbHelper->closeConnection();
+        $this->tweets = $returnMessage;
     }
 }
 
