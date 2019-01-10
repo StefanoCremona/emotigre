@@ -3,6 +3,7 @@
   if(!isset($_SESSION["USER"])) {
     die ('You are not allowed to view this content');
   }
+  $screenName = $_SESSION["USER"]
 ?>
 <!DOCTYPE html>
 <!-- saved from url=(0072)http://stuiis.cms.gre.ac.uk/ha07/Responsive/Breakpoint/w3c-3b.html#about -->
@@ -17,7 +18,7 @@
 </script>
 <script src="res/home.js"></script>
 </head>
-<body onload="populateMainPage()">
+<body onload="loadTweets(user.screenName, populateMainPage)">
 
 <div class="header">
   <h1>EmotiGre - Greenwich Emotions Analyzer</h1>

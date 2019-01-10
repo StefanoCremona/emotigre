@@ -38,10 +38,14 @@ function login(userName, password) {
                 case 200:
                     try {
                         var response = JSON.parse(this.responseText);
-                        alert(response.message);
+                        
                         //reload the page
                         //location.reload();
-                        window.location.assign('./home.php');
+                        if (response.success === true){
+                            window.location.assign('./home.php');
+                        } else {
+                            alert(response.message);
+                        }
                     } catch (error) {
                         alert(error);
                     }

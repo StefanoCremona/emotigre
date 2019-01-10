@@ -3,17 +3,7 @@ const USERPAGE = 1;
 const PROFILEPAGE = 2;
 const ADMINPAGE = 3;
 
-const tweets = [{
-        screenName: "CremonaStefano",
-        content: "Non ce la faccio piuuuuuuuuu!! Quando finisce?"
-    },{
-        screenName: "La Patata",
-        content: "Sono fritta?"
-    },{
-        screenName: "Massimo",
-        content: "Mi sono perso i nipotini"
-    },
-];
+let tweets = [];
 
 const users = [{
     screenName: "CremonaStefano",
@@ -238,8 +228,8 @@ function populateMainPage(page) {
                 innerHTML += '<div id="avatarContainer" class="horizontal centeredV padded">' +
                                 '<img class="icon" src=\'./res/tweetIcon.png\' />' +
                                 '<div>' +
-                                '<div class="tweetAuthor" >'+element.screenName+'</div>' +
-                                '<div class="tweetContent" >'+element.content+'</div>' +
+                                '<div class="tweetAuthor" >'+element.screen_name+'</div>' +
+                                '<div class="tweetContent" >'+element.text+'</div>' +
                                 '</div>' +
                             '</div>';
             });
@@ -249,3 +239,41 @@ function populateMainPage(page) {
     }
     document.getElementById("mainPage").innerHTML = innerHTML;
 };
+
+function loadTweets(screen_name, onSuccess) {
+    if (screen_name.length === 0) {
+        //console.log(screen_name);
+        alert('Screen Name missing');
+        return;
+    }
+    
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            switch (this.status) {
+                case 200:
+                    try {
+                        var response = JSON.parse(this.responseText);
+                        console.log(response);
+                        tweets = response.payload;
+                        //reload the page
+                        if (onSuccess) onSuccess();
+                        alert(response.message);
+                    } catch (error) {
+                        alert(error);
+                    }
+                    break;
+                case 403:
+                case 404:
+                case 500:
+                default:
+                    alert('An unexpected error occurred: ' + this.status);
+            }
+            //hideSpinner();
+        }
+    }
+    xmlhttp.open("POST", "./json/tweets.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //alert("screen_name="+screen_name);
+    xmlhttp.send("screen_name="+screen_name);
+}
