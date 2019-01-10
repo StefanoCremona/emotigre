@@ -87,7 +87,7 @@ class User
         $conn = $myDbHelper->getConnection();
 
         $stmt = mysqli_stmt_init($conn);
-        $query = "DELETE from `comp1678_tweet` WHERE SCREEN_NAME_ORIG = ?";
+        $query = "DELETE from `comp1678_tweet` WHERE SCREEN_NAME = ?";
 
         if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));        
         if(!mysqli_stmt_bind_param($stmt, 's', $this->screenName)) return (new Message(false, 'Failed to bind variables:'.mysqli_stmt_error($stmt)));
@@ -103,7 +103,7 @@ class User
         $conn = $myDbHelper->getConnection();
 
         $stmt = mysqli_stmt_init($conn);
-        $query = "INSERT INTO `comp1678_tweet` (SCREEN_NAME_ORIG, SCREEN_NAME, TEXT, DATE) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO `comp1678_tweet` (SCREEN_NAME, SCREEN_NAME_ORIG, TEXT, DATE) VALUES (?, ?, ?, ?)";
         foreach ($tweets as $key => $value) {
             if(!mysqli_stmt_prepare($stmt, $query)) return (new Message(false, 'Failed to prepare statement:'.mysqli_stmt_error($stmt)));
             //$twt = $value["text"];
