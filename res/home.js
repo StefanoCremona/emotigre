@@ -215,17 +215,17 @@ function populateMainPage(page) {
                     innerHTML += '</div>';
                 innerHTML += '</div>';
                 innerHTML += '<div class="padded">Tap to delete</div>';
-                innerHTML += '<div class="horizontal hunderPercent">';
-                    innerHTML += '<div class="fiftyPercent wrap" >';
-                    keyWords.positive.forEach(element => {
-                        innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement positiveElement">'+element+'</a>';
-                    });
+                innerHTML += '<div class="horizontal">';
+                    innerHTML += '<div class="hundredPercent horizontal wrap" >';
+                        keyWords.positive.forEach(element => {
+                            innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement positiveElement">'+element+'</a>';
+                        });
                     innerHTML += '</div>';
-                
-                    innerHTML += '<div class="fiftyPercent">';
-                    keyWords.negative.forEach(element => {
-                        innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement negativeElement">'+element+'</a>';
-                    });
+                    
+                    innerHTML += '<div class="hundredPercent horizontal wrap" >';
+                        keyWords.negative.forEach(element => {
+                            innerHTML += '<a onclick="deleteKeyWord(\''+element+'\')" href="#" class="keyWordElement negativeElement">'+element+'</a>';
+                        });
                     innerHTML += '</div>';
                 innerHTML += '</div>';
             innerHTML += '</div>';
